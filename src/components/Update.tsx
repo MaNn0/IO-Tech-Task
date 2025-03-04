@@ -9,7 +9,12 @@ import {
 } from "@headlessui/react";
 // import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
-export default function Add() {
+interface UpdateProps {
+  id: number;
+  onUpdate: (id: number) => void;
+}
+
+export default function Update() {
   const [open, setOpen] = useState(false);
 
   return (
@@ -39,27 +44,39 @@ export default function Add() {
                       as="h3"
                       className="text-base font-semibold text-gray-900"
                     >
-                      Add Item
+                      Edit An Item
                     </DialogTitle>
                     <div className="mt-2">
-                      <div className="flex items-center rounded-md bg-white pl-3 border">
+                      <div className=" rounded-md  border-2 border-solid">
+                        <input
+                          id="id"
+                          name="id"
+                          type="text"
+                          disabled
+                          placeholder="ID #1"
+                          className="block w-full min-w-0 grow py-1.5 px-4 text-base text-gray-900 placeholder:text-gray-500 focus:outline-none sm:text-sm/6 bg-gray-200"
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-2">
+                      <div className=" rounded-md bg-white border-2 border-solid">
                         <input
                           id="title"
                           name="title"
                           type="text"
                           placeholder="Title"
-                          className="block w-full min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                          className="block w-full min-w-0 grow py-1.5 px-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 "
                         />
                       </div>
                     </div>
                     <div className="mt-2">
-                      <div className="flex items-center rounded-md bg-white pl-3 border">
+                      <div className="rounded-md bg-white border-2 border-solid">
                         <textarea
                           id="description"
                           name="description"
                           placeholder="Description"
                           rows={4}
-                          className="block w-full min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                          className="block w-full min-w-0 grow py-1.5 px-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                         />
                       </div>
                     </div>
@@ -70,9 +87,9 @@ export default function Add() {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:ml-3 sm:w-auto"
+                  className="inline-flex w-full justify-center rounded-md bg-yellow-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-500 sm:ml-3 sm:w-auto"
                 >
-                  Add
+                  Edit
                 </button>
                 <button
                   type="button"

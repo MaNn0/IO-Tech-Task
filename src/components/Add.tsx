@@ -15,9 +15,9 @@ export default function Add() {
     return (
         <>
             <button
+                type="button"
                 onClick={() => setOpen(true)}
-                className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-7 py-2 rounded-lg hover:from-blue-600 hover:to-blue-700 transition duration-200 shadow-md"
-            >
+                className="inline-flex w-full justify-center rounded-md bg-black px-7 py-2 text-md font-semibold text-white shadow-sm hover:bg-gray-800 sm:ml-3 sm:w-auto">
                 Add
             </button>
 
@@ -42,7 +42,7 @@ export default function Add() {
                                             Add Item
                                         </DialogTitle>
                                         <div className="mt-2">
-                                            <div className="flex items-center rounded-md bg-white pl-3 border">
+                                            <div className="flex items-center rounded-md bg-white pl-3 border-2 border-solid">
                                                 <input
                                                     id="title"
                                                     name="title"
@@ -53,7 +53,7 @@ export default function Add() {
                                             </div>
                                         </div>
                                         <div className="mt-2">
-                                            <div className="flex items-center rounded-md bg-white pl-3 border">
+                                            <div className="flex items-center rounded-md bg-white pl-3 border-2 border-solid">
                                                 <textarea
                                                     id="description"
                                                     name="description"
@@ -70,7 +70,7 @@ export default function Add() {
                                 <button
                                     type="button"
                                     onClick={() => setOpen(false)}
-                                    className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:ml-3 sm:w-auto"
+                                    className="inline-flex w-full justify-center rounded-md bg-black-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black-500 sm:ml-3 sm:w-auto"
                                 >
                                     Add
                                 </button>
