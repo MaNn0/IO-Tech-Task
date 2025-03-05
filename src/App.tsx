@@ -19,7 +19,7 @@ interface Item {
 function App() {
   const [items, setItems] = useState<Item[]>([]);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>(null);
-
+  console.log(sortOrder);
   useEffect(() => {
     const alreadySavedData = localStorage.getItem("items");
     if (alreadySavedData) {
