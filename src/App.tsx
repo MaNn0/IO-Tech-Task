@@ -4,22 +4,14 @@ import Add from "./components/Add";
 import Delete from "./components/Delete";
 import Update from "./components/Update";
 import Filter from "./components/Filter";
+import { Company, Item } from './components/Interfaces';
 
-// import Pagination from "./components/Pagination";
 
-interface Company {
-  catchPhrase: string;
-}
-interface Item {
-  id: number;
-  name: string;
-  company: Company
-}
 
 function App() {
   const [items, setItems] = useState<Item[]>([]);
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>(null);
-  // console.log(sortOrder);
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">('asc');
+  console.log(sortOrder);
   useEffect(() => {
     const alreadySavedData = localStorage.getItem("items");
     if (alreadySavedData) {

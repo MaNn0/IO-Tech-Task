@@ -8,10 +8,7 @@ import {
     DialogTitle,
 } from "@headlessui/react";
 import DeleteBtn from "./DeleteBtn";
-interface DeleteProps {
-    id: number;
-    onDelete: (id: number) => void;
-}
+import { DeleteProps } from './Interfaces';
 
 export default function Delete({ id, onDelete }: DeleteProps) {
     const [open, setOpen] = useState(false);

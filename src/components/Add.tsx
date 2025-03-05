@@ -8,20 +8,7 @@ import {
     DialogTitle,
 } from "@headlessui/react";
 import AddBtn from "./AddBtn";
-
-interface AddProps {
-    items: Item[],
-    onAdd: (newItem: Item) => void;
-}
-
-interface Company {
-    catchPhrase: string;
-}
-interface Item {
-    id: number;
-    name: string;
-    company: Company
-}
+import { Company, Item, AddProps } from './Interfaces';
 
 export default function Add({ onAdd, items }: AddProps) {
     const [open, setOpen] = useState(false);

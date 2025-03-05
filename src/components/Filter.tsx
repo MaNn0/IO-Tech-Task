@@ -1,10 +1,8 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { FilterProps } from './Interfaces';
 
 
-interface FilterProps {
-    onSort: (order: "asc" | "desc") => void;
-}
 
 export default function Filter({ onSort }: FilterProps) {
     return (

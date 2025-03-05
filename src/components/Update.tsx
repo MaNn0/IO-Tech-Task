@@ -8,20 +8,7 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import EditBtn from "./EditBtn";
-interface Company {
-  catchPhrase: string;
-
-}
-interface Item {
-  id: number;
-  name: string;
-  company: Company
-}
-
-interface UpdateProps {
-  item: Item;
-  onUpdate: (updatedItem: Item) => void;
-}
+import { Company, Item, UpdateProps } from "./Interfaces";
 
 export default function Update({ item, onUpdate }: UpdateProps) {
   const [open, setOpen] = useState(false);
