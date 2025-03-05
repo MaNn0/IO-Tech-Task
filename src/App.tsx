@@ -12,6 +12,7 @@ function App() {
   const [items, setItems] = useState<Item[]>([]);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">('asc');
   console.log(sortOrder);
+  // console.log(sortOrder);
   useEffect(() => {
     const alreadySavedData = localStorage.getItem("items");
     if (alreadySavedData) {
