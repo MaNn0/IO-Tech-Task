@@ -7,10 +7,52 @@ import {
     DialogPanel,
     DialogTitle,
 } from "@headlessui/react";
-// import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
-export default function Add() {
+interface AddProps {
+    items: Item[],
+    onAdd: (newItem: Item) => void;
+}
+
+interface Company {
+    catchPhrase: string;
+}
+interface Item {
+    id: number;
+    name: string;
+    company: Company
+}
+
+export default function Add({ onAdd, items }: AddProps) {
     const [open, setOpen] = useState(false);
+    const [name, setName] = useState("");
+    const [catchPhrase, setCatchPhrase] = useState("");
+
+    const handleSubmit = async () => {
+        const newItem: Item = {
+            id: items.length > 0 ? items[items.length - 1].id + 1 : 1,
+            name: name,
+            company: {
+                catchPhrase: catchPhrase
+            },
+        };
+        try {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/users`,
+                { method: 'POST' })
+            if (!response.ok) {
+                throw new Error("Failed to add item")
+            }
+            const data = await response.json()
+            console.log('Id of new item: ', data);
+            alert('item added successfully')
+            onAdd(newItem);
+            setOpen(false);
+
+        } catch (err) {
+            console.error(err)
+            alert("Failed to add item");
+        }
+    };
+    console.log(items);
 
     return (
         <>
@@ -21,7 +63,7 @@ export default function Add() {
                 Add
             </button>
 
-            <Dialog open={open} onClose={setOpen} className="relative z-10">
+            <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
                 <DialogBackdrop
                     transition
                     className="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
@@ -39,27 +81,44 @@ export default function Add() {
                                             as="h3"
                                             className="text-base font-semibold text-gray-900"
                                         >
-                                            Add Item
+                                            Add An Item
                                         </DialogTitle>
                                         <div className="mt-2">
-                                            <div className="flex items-center rounded-md bg-white pl-3 border-2 border-solid">
+                                            <div className=" rounded-md  border-2 border-solid">
                                                 <input
-                                                    id="title"
-                                                    name="title"
+                                                    id="id"
+                                                    name="id"
                                                     type="text"
-                                                    placeholder="Title"
-                                                    className="block w-full min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                                                    disabled
+                                                    value={`ID #${items[items.length - 1]?.id + 1 || 1}`}
+                                                    // stop here
+                                                    className="block w-full min-w-0 grow py-1.5 px-4 text-base text-gray-900 placeholder:text-gray-500 focus:outline-none sm:text-sm/6 bg-gray-200"
                                                 />
                                             </div>
                                         </div>
                                         <div className="mt-2">
-                                            <div className="flex items-center rounded-md bg-white pl-3 border-2 border-solid">
+                                            <div className=" rounded-md bg-white border-2 border-solid">
+                                                <input
+                                                    id="title"
+                                                    name="title"
+                                                    type="text"
+                                                    // value={name}
+                                                    onChange={(e) => setName(e.target.value)}
+                                                    placeholder="Title"
+                                                    className="block w-full min-w-0 grow py-1.5 px-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 "
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="mt-2">
+                                            <div className="rounded-md bg-white border-2 border-solid">
                                                 <textarea
                                                     id="description"
                                                     name="description"
                                                     placeholder="Description"
+                                                    // value={catchPhrase}
+                                                    onChange={(e) => setCatchPhrase(e.target.value)}
                                                     rows={4}
-                                                    className="block w-full min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                                                    className="block w-full min-w-0 grow py-1.5 px-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                                                 />
                                             </div>
                                         </div>
@@ -69,8 +128,8 @@ export default function Add() {
                             <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button
                                     type="button"
-                                    onClick={() => setOpen(false)}
-                                    className="inline-flex w-full justify-center rounded-md bg-black-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black-500 sm:ml-3 sm:w-auto"
+                                    onClick={handleSubmit}
+                                    className="inline-flex w-full justify-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white-500 sm:ml-3 sm:w-auto"
                                 >
                                     Add
                                 </button>

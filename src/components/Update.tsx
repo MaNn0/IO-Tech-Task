@@ -7,26 +7,67 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-// import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
-interface UpdateProps {
+interface Company {
+  catchPhrase: string;
+
+}
+interface Item {
   id: number;
-  onUpdate: (id: number) => void;
+  name: string;
+  company: Company
 }
 
-export default function Update() {
+interface UpdateProps {
+  item: Item;
+  onUpdate: (updatedItem: Item) => void;
+}
+
+export default function Update({ item, onUpdate }: UpdateProps) {
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState(item.name);
+  const [catchPhrase, setCatchPhrase] = useState(item.company.catchPhrase);
+
+  const handleSubmit = async () => {
+    const updatedItem: Item = {
+      ...item,
+      name: name,
+      company: {
+        catchPhrase: catchPhrase,
+      },
+    };
+    try {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${item.id}`,
+        { method: 'PATCH' }
+      )
+      if (!response.ok) {
+        throw new Error('Failed to update item');
+      }
+
+      const data = await response.json();
+      console.log('Updated item:', data);
+
+      alert('Item Updated Successfully');
+      onUpdate(updatedItem)
+      setOpen(false)
+
+    } catch (error) {
+      console.error('Error updating item:', error)
+      alert('Faild to update item')
+    }
+
+  };
 
   return (
     <>
       <button
         onClick={() => setOpen(true)}
-        className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-4 py-2 rounded-lg hover:from-yellow-600 hover:to-yellow-700 transition duration-200 shadow-md"
+        className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-2 rounded-lg hover:from-yellow-600 hover:to-yellow-700 transition duration-200 shadow-md"
       >
         Edit
       </button>
 
-      <Dialog open={open} onClose={setOpen} className="relative z-10">
+      <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
@@ -53,7 +94,7 @@ export default function Update() {
                           name="id"
                           type="text"
                           disabled
-                          placeholder="ID #1"
+                          value={`ID #${item.id}`}
                           className="block w-full min-w-0 grow py-1.5 px-4 text-base text-gray-900 placeholder:text-gray-500 focus:outline-none sm:text-sm/6 bg-gray-200"
                         />
                       </div>
@@ -64,6 +105,8 @@ export default function Update() {
                           id="title"
                           name="title"
                           type="text"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
                           placeholder="Title"
                           className="block w-full min-w-0 grow py-1.5 px-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 "
                         />
@@ -75,6 +118,8 @@ export default function Update() {
                           id="description"
                           name="description"
                           placeholder="Description"
+                          value={catchPhrase}
+                          onChange={(e) => setCatchPhrase(e.target.value)}
                           rows={4}
                           className="block w-full min-w-0 grow py-1.5 px-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                         />
@@ -86,7 +131,7 @@ export default function Update() {
               <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                 <button
                   type="button"
-                  onClick={() => setOpen(false)}
+                  onClick={handleSubmit}
                   className="inline-flex w-full justify-center rounded-md bg-yellow-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-500 sm:ml-3 sm:w-auto"
                 >
                   Edit

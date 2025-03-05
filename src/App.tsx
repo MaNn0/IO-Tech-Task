@@ -3,17 +3,22 @@ import "./App.css";
 import Add from "./components/Add";
 import Delete from "./components/Delete";
 import Update from "./components/Update";
-import Pagination from "./components/Pagination";
+import Filter from "./components/Filter";
 
+// import Pagination from "./components/Pagination";
+
+interface Company {
+  catchPhrase: string;
+}
 interface Item {
   id: number;
-  title: string;
-  body: string;
-  userId: number;
+  name: string;
+  company: Company
 }
 
 function App() {
   const [items, setItems] = useState<Item[]>([]);
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>(null);
 
   useEffect(() => {
     const alreadySavedData = localStorage.getItem("items");
@@ -31,8 +36,9 @@ function App() {
 
     const getData = async () => {
       try {
-        const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+        const response = await fetch("https://jsonplaceholder.typicode.com/users");
         const data: Item[] = await response.json();
+
         setItems(data);
         localStorage.setItem("items", JSON.stringify(data));
       } catch (error) {
@@ -41,7 +47,6 @@ function App() {
     };
     getData();
   }, []);
-  console.log(items);
 
   function handleDeleteItem(id: number) {
     const newItems = items.filter((item) => item.id !== id);
@@ -49,11 +54,27 @@ function App() {
     setItems(newItems);
   }
 
-  // function handleUpdateItem(id: number) {
-  //   const newItems = items.map((item) => item.id === id ? id);
-  //   localStorage.setItem("items", JSON.stringify(newItems));
-  //   setItems(newItems);
-  // }
+  const handleUpdateItem = (updatedItem: Item) => {
+    const newItems = items.map((item) =>
+      item.id === updatedItem.id ? updatedItem : item
+    );
+    localStorage.setItem("items", JSON.stringify(newItems));
+    setItems(newItems);
+  };
+
+  const handleAddItem = (newItem: Item) => {
+    const newItems = [...items, newItem];
+    localStorage.setItem("items", JSON.stringify(newItems));
+    setItems(newItems);
+  };
+
+  const handleSort = (order: "asc" | "desc") => {
+    setSortOrder(order);
+    const sortedItems = [...items].sort((a, b) =>
+      order === "asc" ? a.id - b.id : b.id - a.id
+    );
+    setItems(sortedItems);
+  };
 
   return (
     <div className="container mx-auto text-center p-6">
@@ -61,7 +82,8 @@ function App() {
         <h1 className="text-4xl font-bold text-gray-800">
           CRUD ReactJS Application with Mock API
         </h1>
-        <Add />
+        <Filter onSort={handleSort} />
+        <Add items={items} onAdd={handleAddItem} />
       </div>
 
       <table className="min-w-full bg-white border border-gray-300 rounded-lg overflow-hidden shadow-xl">
@@ -77,21 +99,21 @@ function App() {
           {items.map((item) => (
             <tr key={item.id} className="hover:bg-gray-50 transition duration-200">
               <td className="p-4 border-b border-gray-200 text-gray-700">{item.id}</td>
-              <td className="p-4 border-b border-gray-200 text-gray-700">{item.title}</td>
-              <td className="p-4 border-b border-gray-200 text-gray-700">{item.body}</td>
+              <td className="p-4 border-b border-gray-200 text-gray-700">{item.name}</td>
+              <td className="p-4 border-b border-gray-200 text-gray-700">{item.company.catchPhrase}</td>
               <td className="p-4 border-b border-gray-200">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-evenly items-center">
                   <Delete id={item.id} onDelete={handleDeleteItem} />
-                  <Update />
+                  <Update item={item} onUpdate={handleUpdateItem} />
                 </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <Pagination />
     </div>
   );
 }
+
 
 export default App;

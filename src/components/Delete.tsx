@@ -17,7 +17,7 @@ export default function Delete({ id, onDelete }: DeleteProps) {
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`,
+            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`,
                 { method: 'DELETE' });
             if (response.ok) {
                 alert('item deleted successfully')
@@ -51,7 +51,7 @@ export default function Delete({ id, onDelete }: DeleteProps) {
                                         <DialogTitle
                                             as="h3"
                                             className="text-base text-center font-semibold text-gray-900">
-                                            Are you sure you want to delete number {id} ?
+                                            Are you sure you want to delete item number {id} ?
                                         </DialogTitle>
                                     </div>
                                 </div>
