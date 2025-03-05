@@ -1,6 +1,6 @@
 # IO Tech Task - React CRUD Application
 
-This is a React-based CRUD (Create, Read, Update, Delete) application built as part of a technical task for IO Tech. The application allows users to manage a list of items, including adding, updating, deleting, and sorting items. It uses modern React features, Tailwind CSS for styling, and integrates with a mock API for data persistence.
+This is a React-based CRUD (Create, Read, Update, Delete) application built as part of a technical task for IO Tech. The application allows users to manage a list of items, including adding, updating, deleting, and sorting items. It uses modern React features, Tailwind CSS for styling, and integrates with **localStorage** for data persistence. Additionally, it uses a mock API (`jsonplaceholder.typicode.com`) for initial data fetching.
 
 ## Features
 
@@ -8,6 +8,7 @@ This is a React-based CRUD (Create, Read, Update, Delete) application built as p
 - **Update Items**: Users can edit existing items.
 - **Delete Items**: Users can remove items from the list.
 - **Sort Items**: Users can sort items in ascending or descending order.
+- **LocalStorage Integration**: All changes are saved to the browser's `localStorage`, ensuring data persistence across page reloads.
 - **Responsive Design**: The application is fully responsive and works on all screen sizes.
 - **Mock API Integration**: Uses `jsonplaceholder.typicode.com` as a mock API for data operations.
 
