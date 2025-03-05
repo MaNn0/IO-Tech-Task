@@ -63,24 +63,6 @@ Follow these steps to set up the project locally:
 1. Click the **Filter** button.
 2. Choose **Low to high** or **High to low** to sort the items.
 
-## Folder Structure
-
-IO-Tech-Task/
-├── public/
-├── src/
-│ ├── components/ # Reusable components
-│ ├── App.tsx # Main application component
-│ ├── main.tsx # Entry point
-│ └── vite-env.d.ts # TypeScript declarations
-├── .gitignore
-├── index.html
-├── package.json
-├── README.md
-├── tailwind.config.js # Tailwind CSS configuration
-├── tsconfig.json # TypeScript configuration
-└── vite.config.ts # Vite configuration
-
-
 ## Acknowledgments
 
 - [React](https://reactjs.org/) for the UI library.
