@@ -45,7 +45,7 @@ export default function Update({ item, onUpdate }: UpdateProps) {
       }
 
       const data = await response.json();
-      console.log('Updated item:', data);
+      // console.log('Updated item:', data);
 
       alert('Item Updated Successfully');
       onUpdate(updatedItem)

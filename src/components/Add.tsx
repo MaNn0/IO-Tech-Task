@@ -42,7 +42,7 @@ export default function Add({ onAdd, items }: AddProps) {
                 throw new Error("Failed to add item")
             }
             const data = await response.json()
-            console.log('Id of new item: ', data);
+            // console.log('Id of new item: ', data);
             alert('item added successfully')
             onAdd(newItem);
             setOpen(false);
@@ -52,7 +52,7 @@ export default function Add({ onAdd, items }: AddProps) {
             alert("Failed to add item");
         }
     };
-    console.log(items);
+    // console.log(items);
 
     return (
         <>
