@@ -1,46 +1,81 @@
-# Getting Started with Create React App
+# IO Tech Task - React CRUD Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React-based CRUD (Create, Read, Update, Delete) application built as part of a technical task for IO Tech. The application allows users to manage a list of items, including adding, updating, deleting, and sorting items. It uses modern React features, Tailwind CSS for styling, and integrates with **localStorage** for data persistence. Additionally, it uses a mock API (`jsonplaceholder.typicode.com`) for initial data fetching.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Add Items**: Users can add new items with a title and description.
+- **Update Items**: Users can edit existing items.
+- **Delete Items**: Users can remove items from the list.
+- **Sort Items**: Users can sort items in ascending or descending order.
+- **LocalStorage Integration**: All changes are saved to the browser's `localStorage`, ensuring data persistence across page reloads.
+- **Responsive Design**: The application is fully responsive and works on all screen sizes.
+- **Mock API Integration**: Uses `jsonplaceholder.typicode.com` as a mock API for data operations.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **React**: A JavaScript library for building user interfaces.
+- **Tailwind CSS**: A utility-first CSS framework for styling.
+- **Headless UI**: A set of unstyled, accessible UI components for React.
+- **React Icons**: Provides icons for the UI.
+- **Vite**: A fast build tool for modern web development.
+- **TypeScript**: Adds static typing to JavaScript for better code quality.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Live Demo
 
-### `npm test`
+You can access the deployed application here: [Live Demo](https://sage-empanada-f56d20.netlify.app/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+Follow these steps to set up the project locally:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/MaNn0/IO-Tech-Task.git
+   cd IO-Tech-Task
+2. Install dependencies:
+   ```bash npm install ```
+3. Run the development server:
+   ```bash npm run dev```
+4. Open the application:
+   Visit http://localhost:5173 in your browser to view the application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Adding an Item
 
-### `npm run eject`
+1. Click the **Add** button.
+2. Fill in the title and description.
+3. Click **Add** to save the item.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Updating an Item
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Click the **Edit** button next to the item you want to update.
+2. Modify the title or description.
+3. Click **Edit** to save the changes.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Deleting an Item
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Click the **Delete** button next to the item you want to remove.
+2. Confirm the deletion.
 
-## Learn More
+### Sorting Items
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Click the **Filter** button.
+2. Choose **Low to high** or **High to low** to sort the items.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Acknowledgments
+
+- [React](https://reactjs.org/) for the UI library.
+- [Tailwind CSS](https://tailwindcss.com/) for the styling framework.
+- [Headless UI](https://headlessui.com/) for accessible UI components.
+- [Vite](https://vitejs.dev/) for the build tool.
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com/) for the mock API.
+
+## Contact
+
+If you have any questions or feedback, feel free to reach out:
+
+- **Name**: Abdelrahman Ebeid
+- **GitHub**: [MaNn0](https://github.com/MaNn0)
+- **Email**: [abdelrahmann.ramadann@gmail.com](mailto:abdelrahmann.ramadann@gmail.com)
