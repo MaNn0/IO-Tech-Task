@@ -78,39 +78,44 @@ function App() {
 
   return (
     <div className="container mx-auto text-center p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-4xl font-bold text-gray-800">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+        <h1 className="text-4xl w-full font-bold text-gray-800 mb-4 md:mb-0 items-center text-start">
           CRUD ReactJS Application with Mock API
         </h1>
-        <Filter onSort={handleSort} />
-        <Add items={items} onAdd={handleAddItem} />
+
+        <div className="flex justify-between md:flex-row md:justify-between gap-4 w-full md:w-1/3">
+          <Filter onSort={handleSort} />
+          <Add items={items} onAdd={handleAddItem} />
+        </div>
       </div>
 
-      <table className="min-w-full bg-white border border-gray-300 rounded-lg overflow-hidden shadow-xl">
-        <thead className="bg-gradient-to-r from-green-500 to-green-600">
-          <tr>
-            <th className="p-4 border-b border-gray-200 text-white font-semibold">#</th>
-            <th className="p-4 border-b border-gray-200 text-white font-semibold">Title</th>
-            <th className="p-4 border-b border-gray-200 text-white font-semibold">Description</th>
-            <th className="p-4 border-b border-gray-200 text-white font-semibold">Modify</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((item) => (
-            <tr key={item.id} className="hover:bg-gray-50 transition duration-200">
-              <td className="p-4 border-b border-gray-200 text-gray-700">{item.id}</td>
-              <td className="p-4 border-b border-gray-200 text-gray-700 min-w-[220px] max-w-[420px]">{item.name}</td>
-              <td className="p-4 border-b border-gray-200 text-gray-700 min-w-[220px] max-w-[420px]">{item.company.catchPhrase}</td>
-              <td className="p-4 border-b border-gray-200">
-                <div className="flex justify-evenly items-center">
-                  <Delete id={item.id} onDelete={handleDeleteItem} />
-                  <Update item={item} onUpdate={handleUpdateItem} />
-                </div>
-              </td>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-xl">
+          <thead className="bg-gradient-to-r from-green-500 to-green-600">
+            <tr>
+              <th className="p-4 border-b border-gray-200 text-white font-semibold">#</th>
+              <th className="p-4 border-b border-gray-200 text-white font-semibold">Title</th>
+              <th className="p-4 border-b border-gray-200 text-white font-semibold hidden md:table-cell">Description</th>
+              <th className="p-4 border-b border-gray-200 text-white font-semibold">Modify</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {items.map((item) => (
+              <tr key={item.id} className="hover:bg-gray-50 transition duration-200">
+                <td className="p-4 border-b border-gray-200 text-gray-700">{item.id}</td>
+                <td className="p-4 border-b border-gray-200 text-gray-700 min-w-[150px]">{item.name}</td>
+                <td className="p-4 border-b border-gray-200 text-gray-700 hidden md:table-cell">{item.company.catchPhrase}</td>
+                <td className="p-4 border-b border-gray-200">
+                  <div className="flex justify-evenly items-center">
+                    <Delete id={item.id} onDelete={handleDeleteItem} />
+                    <Update item={item} onUpdate={handleUpdateItem} />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
