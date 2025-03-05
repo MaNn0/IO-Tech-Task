@@ -99,8 +99,8 @@ function App() {
           {items.map((item) => (
             <tr key={item.id} className="hover:bg-gray-50 transition duration-200">
               <td className="p-4 border-b border-gray-200 text-gray-700">{item.id}</td>
-              <td className="p-4 border-b border-gray-200 text-gray-700">{item.name}</td>
-              <td className="p-4 border-b border-gray-200 text-gray-700">{item.company.catchPhrase}</td>
+              <td className="p-4 border-b border-gray-200 text-gray-700 min-w-[220px] max-w-[420px]">{item.name}</td>
+              <td className="p-4 border-b border-gray-200 text-gray-700 min-w-[220px] max-w-[420px]">{item.company.catchPhrase}</td>
               <td className="p-4 border-b border-gray-200">
                 <div className="flex justify-evenly items-center">
                   <Delete id={item.id} onDelete={handleDeleteItem} />

@@ -7,6 +7,7 @@ import {
     DialogPanel,
     DialogTitle,
 } from "@headlessui/react";
+import DeleteBtn from "./DeleteBtn";
 interface DeleteProps {
     id: number;
     onDelete: (id: number) => void;
@@ -31,11 +32,9 @@ export default function Delete({ id, onDelete }: DeleteProps) {
     }
     return (
         <>
-            <button
-                onClick={() => setOpen(true)}
-                className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-red-700 transition duration-200 shadow-md">
-                Delete
-            </button>
+            <div onClick={() => setOpen(true)}>
+                <DeleteBtn />
+            </div>
             <Dialog open={open} onClose={setOpen} className="relative z-10">
                 <DialogBackdrop
                     transition

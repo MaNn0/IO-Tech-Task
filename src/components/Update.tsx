@@ -7,7 +7,7 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-
+import EditBtn from "./EditBtn";
 interface Company {
   catchPhrase: string;
 
@@ -60,12 +60,11 @@ export default function Update({ item, onUpdate }: UpdateProps) {
 
   return (
     <>
-      <button
+      <div
         onClick={() => setOpen(true)}
-        className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-2 rounded-lg hover:from-yellow-600 hover:to-yellow-700 transition duration-200 shadow-md"
       >
-        Edit
-      </button>
+        <EditBtn />
+      </div>
 
       <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
         <DialogBackdrop
@@ -132,7 +131,7 @@ export default function Update({ item, onUpdate }: UpdateProps) {
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  className="inline-flex w-full justify-center rounded-md bg-yellow-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-500 sm:ml-3 sm:w-auto"
+                  className="inline-flex w-full justify-center rounded-md bg-[#66668d] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#9e9ebd] sm:ml-3 sm:w-auto"
                 >
                   Edit
                 </button>

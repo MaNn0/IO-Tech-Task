@@ -7,6 +7,7 @@ import {
     DialogPanel,
     DialogTitle,
 } from "@headlessui/react";
+import AddBtn from "./AddBtn";
 
 interface AddProps {
     items: Item[],
@@ -59,8 +60,8 @@ export default function Add({ onAdd, items }: AddProps) {
             <button
                 type="button"
                 onClick={() => setOpen(true)}
-                className="inline-flex w-full justify-center rounded-md bg-black px-7 py-2 text-md font-semibold text-white shadow-sm hover:bg-gray-800 sm:ml-3 sm:w-auto">
-                Add
+            >
+                <AddBtn />
             </button>
 
             <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
